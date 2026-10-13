@@ -13,4 +13,4 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt pytest ruff
       - run: ruff check flood_model.py tests
-      - run: pytest
+      - run: python -m pytest
