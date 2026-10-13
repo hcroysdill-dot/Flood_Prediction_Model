@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/hcroysdill-dot/Flood_Prediction_Model/actions/workflows/ci.yml/badge.svg)](https://github.com/hcroysdill-dot/Flood_Prediction_Model/actions/workflows/ci.yml)
 
-A Python pipeline that classifies flooded vs. not-flooded areas from Sentinel-2 RGB imagery using machine learning. It compares four scikit-learn models, trains the chosen model on labelled ground-truth points, and maps the predicted flood extent.
+A Python pipeline that classifies flooded vs. not-flooded areas from Sentinel-2 RGB imagery using machine learning. It compares four scikit-learn models, trains the chosen model on labelled ground-truth points, and maps the predicted flood extent. flood_model.py contains the model definitions used in the notebook, with automated tests run via GitHub Actions.
 
 **Study area:** Brzeg, Poland, 18 September 2024
 **Data:** Sentinel-2 imagery from the Copernicus Browser. QGIS was used for visualisation and for creating the ground-truth points.
