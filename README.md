@@ -1,5 +1,7 @@
 # Flood Mapping from Sentinel-2 Imagery (Brzeg, Poland)
 
+[![CI](https://github.com/hcroysdill-dot/Flood_Prediction_Model/actions/workflows/ci.yml/badge.svg)](https://github.com/hcroysdill-dot/Flood_Prediction_Model/actions/workflows/ci.yml)
+
 A Python pipeline that classifies flooded vs. not-flooded areas from Sentinel-2 RGB imagery using machine learning. It compares four scikit-learn models, trains the chosen model on labelled ground-truth points, and maps the predicted flood extent.
 
 **Study area:** Brzeg, Poland, 18 September 2024
