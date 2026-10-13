@@ -1,27 +1,42 @@
+from functools import partial
+
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import f1_score
-from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.svm import SVC
 
 
-def get_models(seed=42):
+def learn_rand_forest(train_X, train_y, random_state=42):
+    model = RandomForestClassifier(random_state=random_state)
+    model.fit(train_X, train_y)
+    return model
+
+
+def learn_logistic_regression(train_X, train_y):
+    model = LogisticRegression()
+    model.fit(train_X, train_y)
+    return model
+
+
+def learn_SVC(train_X, train_y):
+    model = SVC()
+    model.fit(train_X, train_y)
+    return model
+
+
+def learn_MLP(train_X, train_y, random_state=42):
+    # The MLP can give inconsistent results between runs;
+    # random_state keeps it repeatable.
+    model = MLPClassifier(max_iter=1000, random_state=random_state)
+    model.fit(train_X, train_y)
+    return model
+
+
+def make_learners(random_state=42):
+    """Return {model name: function(train_X, train_y) -> trained model}."""
     return {
-        "Random Forest": RandomForestClassifier(random_state=seed),
-        "Logistic Regression": LogisticRegression(max_iter=1000),
-        "SVC": SVC(),
-        "MLP": MLPClassifier(max_iter=500, random_state=seed),
+        "Random Forest": partial(learn_rand_forest, random_state=random_state),
+        "Logistic Regression": learn_logistic_regression,
+        "SVC": learn_SVC,
+        "MLP": partial(learn_MLP, random_state=random_state),
     }
-
-
-def compare_models(X, y, seed=42):
-    """Train each model on an 80/20 stratified split and return F1 scores."""
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, stratify=y, random_state=seed
-    )
-    scores = {}
-    for name, model in get_models(seed).items():
-        model.fit(X_train, y_train)
-        scores[name] = f1_score(y_test, model.predict(X_test), average=None)
-    return scores
