@@ -37,7 +37,7 @@ Random Forest was used for the final map. Its scores were close to the MLP's, an
 
 ## Tech stack
 
-Python, scikit-learn, rasterio, GeoPandas, Shapely, NumPy, Matplotlib, QGIS
+Python, scikit-learn, rasterio, GeoPandas, Shapely, NumPy, Matplotlib, QGIS, CI: GitHub Actions (pytest, ruff)
 
 ## Usage
 
